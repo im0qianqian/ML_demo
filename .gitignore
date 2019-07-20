@@ -10,6 +10,7 @@ __pycache__/
 .idea/
 .vscode/
 test/
+data/
 
 # Distribution / packaging
 .Python
