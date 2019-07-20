@@ -58,7 +58,9 @@ def show_diff_image():
             res = tmp
         else:
             res = np.vstack((res, tmp))
-    Image.fromarray(res).show()
+    image = Image.fromarray(res).convert('RGB')
+    image.save('diff_image.png')
+    image.show()
 
 
 def show_decode_image(x_start, y_start, x_step, y_step, size):
@@ -80,7 +82,9 @@ def show_decode_image(x_start, y_start, x_step, y_step, size):
             res = tmp
         else:
             res = np.vstack((res, tmp))
-    Image.fromarray(res).show()
+    image = Image.fromarray(res).convert('RGB')
+    image.save('decode_image.png')
+    image.show()
 
 
 if __name__ == '__main__':
