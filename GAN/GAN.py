@@ -11,12 +11,12 @@ import matplotlib.pyplot as plt
 def create_model():
     generator_model = Sequential()
     generator_model.add(Dense(units=1000, input_dim=10, activation='relu'))
-    # generator_model.add(Dense(units=500, activation='relu'))
-    generator_model.add(Dense(units=28 * 28, activation='tanh'))
+    generator_model.add(Dense(units=500, activation='relu'))
+    generator_model.add(Dense(units=28 * 28, activation='relu'))
 
     discriminator_model = Sequential()
     discriminator_model.add(Dense(units=1000, input_dim=28 * 28, activation='relu'))
-    # discriminator_model.add(Dense(units=500, activation='relu'))
+    discriminator_model.add(Dense(units=500, activation='relu'))
     discriminator_model.add(Dense(units=1, activation='sigmoid'))
 
     model = Sequential()
@@ -33,14 +33,13 @@ def create_model():
 
 def get_generation(model, size=10000):
     x = model.predict(np.random.random((size, 10)))
-    x = (x + 1) / 2.0  # 因为使用了 tanh 激活函数，所以原始范围为 [-1,1]
     y = np.zeros((size, 1))
     return x, y
 
 
 def train_discriminator(generator_model, discriminator_model):
     def get_data():
-        x = mnist_test.reshape(-1, 28 * 28) / 255.0
+        x = mnist_test.reshape(-1, 28 * 28)
         y = np.ones((len(x), 1))
         tmp_x, tmp_y = get_generation(generator_model, len(x))
         return np.vstack((x, tmp_x)), np.vstack((y, tmp_y))
