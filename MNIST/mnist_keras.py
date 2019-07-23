@@ -29,7 +29,6 @@ def init():
 if __name__ == '__main__':
     import time
 
-    start_time = time.time()
     init()
     model = Sequential()
     model.add(Dense(units=1000, activation='sigmoid', input_dim=784))
@@ -38,7 +37,8 @@ if __name__ == '__main__':
 
     model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
 
+    start_time = time.time()
     model.fit(x_train, y_train, epochs=10, batch_size=1000)
     loss_and_metrics = model.evaluate(x_test, y_test, batch_size=1000)
     print(loss_and_metrics)
-    print((time.time() - start_time))
+    print('Total Time: ', (time.time() - start_time))
