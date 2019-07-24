@@ -64,10 +64,11 @@ if __name__ == '__main__':
         'lr': 0.001,
         'epochs': 10,
         'log_interval': 10,
-        'use_cuda': torch.cuda.is_available()
+        'use_cuda': torch.cuda.is_available(),
+        'data_loader_num_workers': 4,
     }
     device = torch.device('cuda' if args['use_cuda'] else 'cpu')
-    kwargs = {'num_workers': 4, 'pin_memory': True} if args['use_cuda'] else {}
+    kwargs = {'num_workers': args['data_loader_num_workers'], 'pin_memory': True} if args['use_cuda'] else {}
     train_loader = torch.utils.data.DataLoader(
         datasets.MNIST('./data', train=True, download=True,
                        transform=transforms.Compose([
