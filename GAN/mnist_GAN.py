@@ -96,3 +96,4 @@ def start(model, generator_model, discriminator_model):
 if __name__ == '__main__':
     (mnist_train, _), (mnist_test, _) = mnist.load_data()
     model, generator_model, discriminator_model = create_model()
+
