@@ -51,9 +51,9 @@ if __name__ == '__main__':
     count = 30  # 对每一个 K 测试 count 次取平均 acc rate
 
     # 归一化处理
-    # minV = np.min(data[:, :attrSize], axis=0)
-    # maxV = np.max(data[:, :attrSize], axis=0)
-    # data[:, :attrSize] = (data[:, :attrSize] - minV) / maxV
+    minV = np.min(data[:, :attrSize], axis=0)
+    maxV = np.max(data[:, :attrSize], axis=0)
+    data[:, :attrSize] = (data[:, :attrSize] - minV) / maxV
 
     # 可视化处理
     KNN(attrSize, K_high, data, plot_show=True)
