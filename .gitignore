@@ -11,6 +11,7 @@ __pycache__/
 .vscode/
 test/
 data/
+MLDL_homework/HW2/cnews.*.txt
 
 # Distribution / packaging
 .Python
