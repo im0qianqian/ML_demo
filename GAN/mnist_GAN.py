@@ -25,8 +25,8 @@ def create_model():
     for i in discriminator_model.layers:
         model.add(i)
 
-    generator_model.compile(optimizer=Adam(0.0001), loss='mean_squared_error')
-    discriminator_model.compile(optimizer=Adam(0.0001), loss='mean_squared_error')
+    generator_model.compile(optimizer=Adam(0.00001), loss='mean_squared_error')
+    discriminator_model.compile(optimizer=Adam(0.00001), loss='mean_squared_error')
 
     return model, generator_model, discriminator_model
 
@@ -51,7 +51,7 @@ def train_discriminator(generator_model, discriminator_model):
     idx = list(range(len(x)))
     np.random.shuffle(idx)
 
-    discriminator_model.compile(optimizer=Adam(0.0001), loss='mean_squared_error')
+    discriminator_model.compile(optimizer=Adam(0.00001), loss='mean_squared_error')
     discriminator_model.fit(x[idx], y[idx], epochs=2, batch_size=1000)
 
 
@@ -61,7 +61,7 @@ def train_generator(model, discriminator_model):
     x = np.random.random((20000, 10))
     y = np.ones((len(x), 1))
 
-    model.compile(optimizer=Adam(), loss='mean_squared_error')
+    model.compile(optimizer=Adam(0.0001), loss='mean_squared_error')
     model.fit(x, y, epochs=5, batch_size=1000)
 
 
@@ -89,8 +89,8 @@ def train_iteration(model, generator_model, discriminator_model):
 def start(model, generator_model, discriminator_model):
     for i in range(50):
         train_iteration(model, generator_model, discriminator_model)
-        if i % 5 == 0:
-            show_image()
+        # if i % 5 == 0:
+        #     show_image()
 
 
 if __name__ == '__main__':
